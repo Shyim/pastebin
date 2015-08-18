@@ -1,7 +1,8 @@
 package models
 
 type Paste struct {
-	Id   int
-	Code string `orm:"type(text)"`
-	Language string
+	Id			int
+	Url			string
+	Code		string `orm:"type(text)"`
+	Language	string
 }

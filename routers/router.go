@@ -7,5 +7,5 @@ import (
 
 func init() {
 	beego.Router("/", &controllers.MainController{})
-	beego.Router("/code/:id([0-9]+)", &controllers.CodeController{})
+	beego.Router("/code/:id", &controllers.CodeController{})
 }

@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"paste/models"
-	"strconv"
+	"fmt"
 )
 
 type CodeController struct {
@@ -12,24 +12,20 @@ type CodeController struct {
 }
 
 func (this *CodeController) Get() {
-	id, err :=  strconv.ParseInt(this.Ctx.Input.Param(":id"), 10, 64)
+	o := orm.NewOrm();
+
+	paste := models.Paste{Url: this.Ctx.Input.Param(":id")}
+	err := o.Read(&paste, "Url")
+
 	if(err == nil) {
-		o := orm.NewOrm();
-
-		paste := models.Paste{Id: int(id)}
-		err := o.Read(&paste)
-
-		if(err == nil) {
-			this.Data["Language"] = paste.Language
-			this.Data["Code"] = paste.Code
-		} else {
-			this.Redirect("http://localhost/", 301)
-		}
-
-		this.Data["pageTitle"] = "Paste #" + this.Ctx.Input.Param(":id");
-		this.TplNames = "code.tpl"
-		this.Layout = "layout.tpl"
+		this.Data["Language"] = paste.Language
+		this.Data["Code"] = paste.Code
 	} else {
-		this.Redirect("http://localhost/", 301)
+		fmt.Println("err : %s\n", err);
+		this.Redirect("http://" + beego.AppConfig.String("host"), 301)
 	}
+
+	this.Data["pageTitle"] = "Paste #" + this.Ctx.Input.Param(":id");
+	this.TplNames = "code.tpl"
+	this.Layout = "layout.tpl"
 }
