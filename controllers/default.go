@@ -7,6 +7,7 @@ import (
 	"paste/models"
 	"math/rand"
 	"time"
+	"strconv"
 )
 
 var src = rand.NewSource(time.Now().UnixNano())
@@ -31,9 +32,22 @@ func(this *MainController) Post() {
 	this.Data["pageTitle"] = "Home";
 	language := this.GetString("language");
 	editor := this.GetString("editor");
+	expiration := this.GetString("expiration");
+
+	expirationInt, err := strconv.Atoi(expiration);
+
+	if err != nil {
+		this.Abort("500");
+	}
 
 	o := orm.NewOrm();
-	paste := models.Paste{Code: editor, Language: language, Url: RandStringBytesMaskImprSrc(64)}
+	paste := models.Paste{
+		Code: editor,
+		Language: language,
+		Url: RandStringBytesMaskImprSrc(32),
+		Timestamp: int(time.Now().Unix()),
+		Expiration: expirationInt,
+	}
 
 	id, err := o.Insert(&paste)
 

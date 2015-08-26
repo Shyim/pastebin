@@ -5,4 +5,6 @@ type Paste struct {
 	Url			string
 	Code		string `orm:"type(text)"`
 	Language	string
+	Timestamp	int
+	Expiration	int
 }

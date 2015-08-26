@@ -5,6 +5,8 @@ import (
 	"github.com/astaxie/beego/orm"
 	"paste/models"
 	"fmt"
+	"strconv"
+	"time"
 )
 
 type CodeController struct {
@@ -18,14 +20,22 @@ func (this *CodeController) Get() {
 	err := o.Read(&paste, "Url")
 
 	if(err == nil) {
-		this.Data["Language"] = paste.Language
-		this.Data["Code"] = paste.Code
+		// If Expiration is set
+		if(paste.Expiration != 0) {
+			if(paste.Timestamp + paste.Expiration < int(time.Now().Unix())) {
+				this.Redirect("http://" + beego.AppConfig.String("host"), 301)
+			}
+		}
+
+		this.Data["Language"] = paste.Language;
+		this.Data["Code"] = paste.Code;
+		this.Data["CodeID"] = paste.Id;
+		this.Data["pageTitle"] = "Paste #" + strconv.Itoa(paste.Id);
 	} else {
 		fmt.Println("err : %s\n", err);
 		this.Redirect("http://" + beego.AppConfig.String("host"), 301)
 	}
 
-	this.Data["pageTitle"] = "Paste #" + this.Ctx.Input.Param(":id");
 	this.TplNames = "code.tpl"
 	this.Layout = "layout.tpl"
 }

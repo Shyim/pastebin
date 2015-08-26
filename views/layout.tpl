@@ -19,7 +19,7 @@
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="{{ if .Language }}active{{ end }}">
+						<li class="{{ if eq .pageTitle "Home" }}active{{ end }}">
 							<a href="/">
 								Home
 							</a>
