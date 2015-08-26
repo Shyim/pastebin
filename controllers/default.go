@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"fmt"
 	"github.com/astaxie/beego/orm"
-	"paste/models"
+	"github.com/shyim/pastebin/models"
 	"math/rand"
 	"time"
 	"strconv"

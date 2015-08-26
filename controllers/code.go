@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"paste/models"
+	"github.com/shyim/pastebin/models"
 	"fmt"
 	"strconv"
 	"time"
@@ -14,7 +14,7 @@ type CodeController struct {
 }
 
 func (this *CodeController) Get() {
-	o := orm.NewOrm();
+	o := orm.NewOrm()
 
 	paste := models.Paste{Url: this.Ctx.Input.Param(":id")}
 	err := o.Read(&paste, "Url")
@@ -27,12 +27,12 @@ func (this *CodeController) Get() {
 			}
 		}
 
-		this.Data["Language"] = paste.Language;
-		this.Data["Code"] = paste.Code;
-		this.Data["CodeID"] = paste.Id;
-		this.Data["pageTitle"] = "Paste #" + strconv.Itoa(paste.Id);
+		this.Data["Language"] = paste.Language
+		this.Data["Code"] = paste.Code
+		this.Data["CodeID"] = paste.Id
+		this.Data["pageTitle"] = "Paste #" + strconv.Itoa(paste.Id)
 	} else {
-		fmt.Println("err : %s\n", err);
+		fmt.Println("err : %s\n", err)
 		this.Redirect("http://" + beego.AppConfig.String("host"), 301)
 	}
 

@@ -1,17 +1,20 @@
 package main
 
 import (
-	_ "paste/routers"
+	_ "github.com/shyim/pastebin/routers"
 	"github.com/astaxie/beego"
 	_ "github.com/mattn/go-sqlite3"
-	"paste/models"
+	"github.com/shyim/pastebin/models"
 	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego/cache"
+	"github.com/astaxie/beego/toolbox"
 	"fmt"
+	"time"
+	"strconv"
 )
 
 func main() {
 	initModels();
+	initCron();
 	beego.Run()
 }
 
@@ -27,12 +30,22 @@ func initModels() {
 	}
 }
 
-func initCache() cache.Cache {
-	bm, err := cache.NewCache("memory", `{"interval":3600}`)
+func initCron() {
+	tk1 := toolbox.NewTask("deleteOldPaste", "0 0 * * * *", func() error {
+		o := orm.NewOrm()
+		var r orm.RawSeter
+		r = o.Raw("DELETE FROM paste WHERE Timestamp != 0 AND Timestamp < " + strconv.Itoa(int(time.Now().Unix())))
+		res, err := r.Exec()
+		fmt.Println("Deleting old pasts")
+		if err == nil {
+			num, _ := res.RowsAffected()
+			fmt.Println("Affected Rows", num)
+		} else {
+			fmt.Println("Database Error: ", err)
+		}
 
-	if err != nil {
-		fmt.Println("Cache Init error %s\n", err);
-	}
-
-	return bm;
+		return nil
+	})
+	toolbox.AddTask("deleteOldPaste", tk1)
+	toolbox.StartTask()
 }

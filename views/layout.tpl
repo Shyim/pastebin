@@ -3,34 +3,22 @@
 <head>
 	<title>{{ .pageTitle }} - paste.shyim.de</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/codemirror.min.css">
-	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="stylesheet" href="/static/css/theme.css">
 </head>
 <body>
-<header>
-	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle"></button>
-					<a class="navbar-brand" href="#">Pastebin</a>
-				</div>
-
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="{{ if eq .pageTitle "Home" }}active{{ end }}">
-							<a href="/">
-								Home
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
+<header class="container">
+	<nav class="navbar navbar-inverse">
+		<a class="navbar-brand" href="#">Pastebin</a>
+		<ul class="nav nav-pills">
+			<li class="nav-item {{ if eq .pageTitle "Home" }}active{{ end }}">
+				<a class="nav-link" href="/">
+					Home
+				</a>
+			</li>
+		</ul>
+	</nav>
 </header>
-<main>
+<main class="container">
 	{{.LayoutContent}}
 </main>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
