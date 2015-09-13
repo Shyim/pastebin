@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "github.com/shyim/pastebin/routers"
+	_ "github.com/Shyim/pastebin/routers"
 	"github.com/astaxie/beego"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/shyim/pastebin/models"
+	"github.com/Shyim/pastebin/models"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/toolbox"
 	"fmt"

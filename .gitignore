@@ -1,2 +1,6 @@
 data.db
-paste*
+/pastebin*
+.idea
+static/css/*
+static/build/node_modules
+static/build/bower_components

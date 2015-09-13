@@ -1,0 +1,23 @@
+{
+  "name": "pastebin",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Shyim/pastebin",
+  "authors": [
+    "Shyim <shyim@outlook.de>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "~5.6.0",
+    "jquery": "~2.1.4"
+  }
+}

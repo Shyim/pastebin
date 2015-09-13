@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/shyim/pastebin/controllers"
+	"github.com/Shyim/pastebin/controllers"
 	"github.com/astaxie/beego"
 )
 

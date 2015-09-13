@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/shyim/pastebin/models"
+	"github.com/Shyim/pastebin/models"
 	"fmt"
 	"strconv"
 	"time"

@@ -15,6 +15,7 @@
 					<select class="form-control" name="language">
 						<option value="php">PHP</option>
 						<option value="javascript">Javascript</option>
+						<option value="css">CSS</option>
 					</select>
 				</div>
 				<div class="col-xs-1">
@@ -25,7 +26,7 @@
 						<option value="300">5 Minuten</option>
 						<option value="3600">1 Stunde</option>
 						<option value="86400">1 Tag</option>
-						<option value="0">Nie</option>
+						<option value="0" selected>Nie</option>
 					</select>
 				</div>
 				<div class="col-xs-6">
