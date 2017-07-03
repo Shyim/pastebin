@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/Shyim/pastebin/models"
+	"github.com/shyim/pastebin/models"
 	"fmt"
 	"strconv"
 	"time"
@@ -36,6 +36,6 @@ func (this *CodeController) Get() {
 		this.Redirect("http://" + beego.AppConfig.String("host"), 301)
 	}
 
-	this.TplNames = "code.tpl"
+	this.TplName = "code.tpl"
 	this.Layout = "layout.tpl"
 }

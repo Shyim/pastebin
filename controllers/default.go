@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"fmt"
 	"github.com/astaxie/beego/orm"
-	"github.com/Shyim/pastebin/models"
+	"github.com/shyim/pastebin/models"
 	"math/rand"
 	"time"
 	"strconv"
@@ -24,7 +24,7 @@ type MainController struct {
 
 func (this *MainController) Get() {
 	this.Data["pageTitle"] = "Home";
-	this.TplNames = "index.tpl"
+	this.TplName = "index.tpl"
 	this.Layout = "layout.tpl"
 }
 
@@ -57,7 +57,7 @@ func(this *MainController) Post() {
 		this.Redirect("http://" + beego.AppConfig.String("host") + "/code/" + paste.Url, 301)
 	}
 
-	this.TplNames = "index.tpl";
+	this.TplName = "index.tpl";
 	this.Layout = "layout.tpl"
 }
 
